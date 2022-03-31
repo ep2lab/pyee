@@ -1,0 +1,28 @@
+# Template for the main configuration parameters
+# This example shows the R-wave propagating until the ECR at z = 0.8
+general:
+    name  : 'results'      # Name for exporting the results
+    simdir: &simdir 'cases/example/' # Simulation directory (for input and output files)
+    export: False          # Export postprocessing to hdf5
+    fem: True              # FEM or FD solver
+    nthreads: 10           # Number of threads for parallel execution
+simulation:
+    modes: [1]             # ky or m modes to solve for
+    freq : 500             # Antenna excitation frequency in MHz
+geometry:
+    axi: 1                 # 1 == axisymmetric; 0 == planar (x -> r if axi is activated, y is out of plane)
+    Lz: 1                  # Rectangular domain width
+    Lx: 1                  # Rectangular domain height
+    nz: 100                # max index along z direction
+    nx: 100                # max index along x direction
+conditions:                
+    current: [function, '0', '0', 'np.exp(-((z - 0.25)**2 + (x - 0.5)**2)/0.1**2)'] # Antenna current density
+    kappa:   [function, '3-2.5*z', '0.', '2.', '0.', '0.1', '0.', '0.', '0.'] # Plasma properties (see config_sim.py)
+    # Read current density and plasma properties from config_sim.py
+    # current: ['file', *simdir]
+    # kappa  : ['file', *simdir]
+boundaries: # This allows to impose internal boundaries (as rectangles), CURRENTLY DISABLED FOR FEM
+    zo: []                 # List of z coordinate for origin (1 for each rectangle)
+    xo: []                 # List of x coordinate for origin (1 for each rectangle)
+    h:  []                 # List of widths  (1 for each rectangle)
+    w:  []                 # List of heights (1 for each rectangle)

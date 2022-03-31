@@ -1,0 +1,26 @@
+general:
+    name  : 'results'                    # Name for exporting the results
+    simdir: &simdir 'cases/HIP01_w3/'
+    export: False                        # Export postprocessing to hdf5
+    fem: True
+    nthreads: 10                           # Number of threads for parallel FEM solver
+simulation:
+    modes: [1]   # ky or m modes to solve for
+    freq : 13.56 # MHz
+    P_inp: 350   # W
+geometry:
+    axi: 1       # 1 == axisymmetric; 0 == planar
+    Lz: 0.4     # helicon domain
+    Lx: 0.25
+    nz: 1000      # max index along z direction
+    nx: 750      # max index along x direction
+    z_offset: 0.075
+conditions:
+    # Read current density and plasma properties from file
+    current: ['file', *simdir]
+    kappa:   ['file', *simdir]
+# boundaries:
+#     zo: [0.02]
+#     xo: [0.02]
+#     h:  [0.1]
+#     w:  [0.1]
