@@ -16,7 +16,7 @@ The FEM module contains a considerable number of dependencies and precompiled li
     docker run hello-world
     
 Future versions will include the experimental Docker rootless installation https://docs.docker.com/engine/security/rootless/
-Download the public ``ep2lab\pyee`` image from Docker Hub and run the installation script in ``docker\install.sh`` (this will only add your user inside the container so you can modify outputs files with user permissions later:
+Download the public ``ep2lab\pyee`` image from Docker Hub and run the installation script (this will only add your user inside the container so you can modify outputs files with user permissions later:
   
     docker pull ep2lab/pyee:latest
     cd docker
