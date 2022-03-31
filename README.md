@@ -8,10 +8,20 @@ The medium is characterized by a general complex dielectric tensor. The current 
 The only current installation option is using containers until DOLFINx hits a stable version
   
 ###  Using docker containers
-The FEM module contains a considerable number of dependencies and precompiled libraries. Containers are a great option for an easy installation of the code and reproductability across different machines and architectures. You will need to install the Docker engine https://docs.docker.com/engine/install/ (needs sudo permissions) and make sure to follow the post-installation steps to 'Manage Docker as a non-root user'
+The FEM module contains a considerable number of dependencies and precompiled libraries. Containers are a great option for an easy installation of the code and reproductability across different machines and architectures. You will need to install the Docker engine https://docs.docker.com/engine/install/ (needs sudo permissions) and make sure to follow the post-installation steps to 'Manage Docker as a non-root user' and test docker
 
-You can find the instructions in ``docs\docker.md`` and latest available image at the EP2 Drive https://drive.google.com/file/d/1a3mZDlprXgRlnB6LNA461GmL0Cy-a0jx/view?usp=sharing. We recommend to get familiar with Docker commands and take a look a the cheatsheet in ``docs/`` in case some error occurs
-
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    newgrp docker
+    docker run hello-world
+    
+Future versions will include the experimental Docker rootless installation https://docs.docker.com/engine/security/rootless/
+Download the public ``ep2lab\pyee`` image from Docker Hub and run the installation script in ``docker\install.sh`` (this will only add your user inside the container so you can modify outputs files with user permissions later:
+  
+    docker pull ep2lab/pyee
+    cd docker
+    ./install.sh
+  
 ## Simulation Setup, Pre and Postprocessing Options
 
 All setup parameters and postprocessing calls are provided in the case folder ``cases/<<case_name>>``
