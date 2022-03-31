@@ -43,7 +43,7 @@ Using Docker containers
 =======
 The FEM module contains a considerable number of dependencies and precompiled libraries. Containers are a great option for an easy installation of the code and reproductability across different machines and architectures. You will need to install the Docker engine https://docs.docker.com/engine/install/ (needs sudo permissions) and make sure to follow the post-installation steps to 'Manage Docker as a non-root user'
 
-You can find the instructions and latest available image at the EP2 Drive https://drive.google.com/file/d/1a3mZDlprXgRlnB6LNA461GmL0Cy-a0jx/view?usp=sharing
+You can find the instructions in ``docs\docker.md`` and latest available image at the EP2 Drive https://drive.google.com/file/d/1a3mZDlprXgRlnB6LNA461GmL0Cy-a0jx/view?usp=sharing
 
 To run the code via a preinstalled container simply use::
   ./pyee_docker.sh <<case_name>> <<mode>>
