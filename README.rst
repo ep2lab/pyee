@@ -1,12 +1,11 @@
-=======
-PYEE
-=======
+# PYEE
+
 Pyee solves the **frequency domain Maxwell equations** in a planar or axisymmetric domain using either a mixed element FEM formulation or a FD Yee discretization scheme. The new FEM solver is implemented through the parallel FEniCS/dolfinx libary and modern direct linear PETSc solvers. Both the assembly and solver steps are parallelized
 
 The medium is characterized by a general complex dielectric tensor. The current version supports rectangular and uniform meshes with arbitrary integer **azimuthal mode expansions** in the axissymetric mode and **metallic walls (PEC)** boundary conditions. The code was developed for simulations of the **electromagnetic wave propagation through magnetized cold plasmas** and thus includes additional functions for this analysis
 
-Simulation Setup, Pre and Postprocessing Options
-=======
+## Simulation Setup, Pre and Postprocessing Options
+
 All setup parameters and postprocessing calls are provided in the case folder ``cases/<<case_name>>``
 
 The simulation configuration is given in the ``simrc.yml`` file. This also provides solver (FEM or FD) and controls the main simulation parameters
@@ -24,6 +23,9 @@ Examples are provided in the ``cases/`` folder. To run via terminal do ::
 
   ./pyee.sh <<case_name>> <<mode>>
   
+To run the code via a preinstalled container simply use::
+  ./pyee_docker.sh <<case_name>> <<mode>>
+  
 The available modes keywords are::
 
     default    -> runs preprocessing and solver 
@@ -32,23 +34,22 @@ The available modes keywords are::
     
     hyphen     -> runs HYPHEN wrapper pre and post functions
 
-Or inside Python or IPython::
+Inside Python or IPython::
 
   data, solution = run_pyee.sim('<<case_name>>', mode = <<mode>>, **user_data) 
   
 This also outputs the preprocessing and solution data structures. ``user_data`` is an optional dictionary that overwrittes ``simrc`` fields
   
 
-Using Docker containers
+Installation
 =======
+
+##  Using docker containers
+
+
 The FEM module contains a considerable number of dependencies and precompiled libraries. Containers are a great option for an easy installation of the code and reproductability across different machines and architectures. You will need to install the Docker engine https://docs.docker.com/engine/install/ (needs sudo permissions) and make sure to follow the post-installation steps to 'Manage Docker as a non-root user'
 
-You can find the instructions in ``docs\docker.md`` and latest available image at the EP2 Drive https://drive.google.com/file/d/1a3mZDlprXgRlnB6LNA461GmL0Cy-a0jx/view?usp=sharing
-
-To run the code via a preinstalled container simply use::
-  ./pyee_docker.sh <<case_name>> <<mode>>
-
-Nontheless we recommend to get familiar with Docker commands and take a look a the cheatsheet in docs/
+You can find the instructions in ``docs\docker.md`` and latest available image at the EP2 Drive https://drive.google.com/file/d/1a3mZDlprXgRlnB6LNA461GmL0Cy-a0jx/view?usp=sharing. We recommend to get familiar with Docker commands and take a look a the cheatsheet in ``docs/`` in case some error occurs
 
 Additional Tools
 =======
