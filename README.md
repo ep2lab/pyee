@@ -21,6 +21,12 @@ Download the public ``ep2lab\pyee`` image from Docker Hub and run the installati
     docker pull ep2lab/pyee:latest
     cd docker
     ./install.sh
+
+Now you have 2 options. You can forget about the container and run the specialized script that will mount the filesystem and manage the container under the hood (see next section). Or you can work inside a container:
+
+      docker run -ti ep2lab/pyee:latest
+      
+This is often useful for development and debugging or necessary if you are running certain OS (for example windows). You can get familiar with many Docker commands taking a look at the cheatsheet included in the ``docs/`` folder. Find more information about building images at https://hub.docker.com/r/ep2lab/pyee 
   
 ## Simulation Setup, Pre and Postprocessing Options
 
