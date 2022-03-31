@@ -2,7 +2,8 @@
 PYEE
 =======
 
-Pyee solves the **frequency domain Maxwell equations** in a planar or axisymmetric domain using the Yee discretization scheme. 
+Pyee solves the **frequency domain Maxwell equations** in a planar or axisymmetric domain using either a mixed element FEM formulation or a FD Yee discretization scheme. The new FEM solver is implemented through the parallel FEniCS/dolfinx libary and modern direct linear PETSc solvers. Both the assembly and solver steps are parallelized. 
+
 The medium is characterized by a general complex dielectric tensor. The current version supports rectangular and uniform meshes with arbitrary integer **azimuthal mode expansions** in the axissymetric mode and **metallic walls (PEC)** boundary conditions. The code was developed for simulations of the **electromagnetic wave propagation through magnetized cold plasmas** and thus includes additional functions for this analysis. 
 
 Simulation Setup
@@ -16,7 +17,14 @@ Run simulation case
 =======
 Examples are provided in the ``cases/`` folder. To run via terminal do ::
 
-  python run_pyee <<case_name>> 
+  ./pyee.sh <<case_name>> <<mode>>
+  
+The available modes ares ::
+    default     runs preprocessing and solver, 
+    solve_pre   loads preproc.pkl and solves), 
+    hyphen      runs HYPHEN wrapper pre and post functions
+
+
 
 Or inside Python or IPython::
 
