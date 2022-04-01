@@ -5,6 +5,11 @@ Pyee solves the **frequency domain Maxwell equations** in a planar or axisymmetr
 The medium is characterized by a general complex dielectric tensor. The current version supports rectangular and uniform meshes with arbitrary integer **azimuthal mode expansions** in the axissymetric mode and **metallic walls (PEC)** boundary conditions. The code was developed for simulations of the **electromagnetic wave propagation through magnetized cold plasmas** and thus includes additional functions for this analysis
 
 ## Installation
+
+***NOTE: Remember to export your $PYEE enviroment variable*** For example if the folder is located at the user folder and bash is used as terminal:
+    
+    echo 'export PYEE=$HOME/pyee' >> $HOME/.bashrc
+
 The only current installation option is using containers until DOLFINx hits a stable version
   
 ###  Using docker containers
@@ -16,7 +21,7 @@ The FEM module contains a considerable number of dependencies and precompiled li
     docker run hello-world
     
 Future versions will include the experimental Docker rootless installation https://docs.docker.com/engine/security/rootless/
-Download the public ``ep2lab\pyee`` image from Docker Hub and run the installation script (this will only add your user inside the container so you can modify outputs files with user permissions later:
+Download the public ``ep2lab\pyee`` image from Docker Hub and run the installation script (this will only match your user and group IDs inside the image so you can modify outputs files with user permissions later:
   
     docker pull ep2lab/pyee:latest
     cd docker
