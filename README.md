@@ -27,7 +27,9 @@ Now you have 2 options. You can forget about the container and run the specializ
       docker run -ti ep2lab/pyee:latest
       
 This is often useful for development and debugging or necessary if you are running certain OS (for example windows). You can get familiar with many Docker commands taking a look at the cheatsheet included in the ``docs/`` folder. Find more information about building images at https://hub.docker.com/r/ep2lab/pyee 
-  
+
+***NOTE: Using the script ``pyee_docker.sh`` will mount the source code from ``$PYEE`` folder. Working inside the container will execute the code delivered at the time the image was pushed to Docker Hub (unless you mount a file system manually)***
+
 ## Simulation Setup, Pre and Postprocessing Options
 
 All setup parameters and postprocessing calls are provided in the case folder ``cases/<<case_name>>``
