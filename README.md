@@ -5,6 +5,11 @@ Pyee solves the **frequency domain Maxwell equations** in a planar or axisymmetr
 The medium is characterized by a general complex dielectric tensor. The current version supports rectangular and uniform meshes with arbitrary integer **azimuthal mode expansions** in the axissymetric mode and **metallic walls (PEC)** boundary conditions. The code was developed for simulations of the **electromagnetic wave propagation through magnetized cold plasmas** and thus includes additional functions for this analysis
 
 ## Installation
+
+***NOTE: Remember to export your $PYEE enviroment variable*** For example if the folder is located at the user folder and bash is used as terminal:
+    
+    echo 'export PYEE=$HOME/pyee' >> $HOME/.bashrc
+
 The only current installation option is using containers until DOLFINx hits a stable version
   
 ###  Using docker containers
@@ -16,7 +21,7 @@ The FEM module contains a considerable number of dependencies and precompiled li
     docker run hello-world
     
 Future versions will include the experimental Docker rootless installation https://docs.docker.com/engine/security/rootless/
-Download the public ``ep2lab\pyee`` image from Docker Hub and run the installation script (this will only add your user inside the container so you can modify outputs files with user permissions later:
+Download the public ``ep2lab\pyee`` image from Docker Hub and run the installation script (this will only match your user and group IDs inside the image so you can modify outputs files with user permissions later:
   
     docker pull ep2lab/pyee:latest
     cd docker
@@ -27,7 +32,9 @@ Now you have 2 options. You can forget about the container and run the specializ
       docker run -ti ep2lab/pyee:latest
       
 This is often useful for development and debugging or necessary if you are running certain OS (for example windows). You can get familiar with many Docker commands taking a look at the cheatsheet included in the ``docs/`` folder. Find more information about building images at https://hub.docker.com/r/ep2lab/pyee 
-  
+
+***NOTE: Using the script ``pyee_docker.sh`` will mount the source code from ``$PYEE`` folder. Working inside the container will execute the code delivered at the time the image was pushed to Docker Hub (unless you mount a file system manually)***
+
 ## Simulation Setup, Pre and Postprocessing Options
 
 All setup parameters and postprocessing calls are provided in the case folder ``cases/<<case_name>>``
