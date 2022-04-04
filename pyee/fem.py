@@ -203,7 +203,7 @@ def core(dir, m):
     s_xx = inner(E_term, T_term)      
     a = (s_xx - k0**2*inner(kappa*E, T))*x[1]*dx
 
-    L = -1j*k0*Z0*inner(J, T)*x[1]*dx
+    L = +1j*k0*Z0*inner(J, T)*x[1]*dx   # This is + because our phasor is (-iwt). In JIN09 there is a - sign
 
     problem = LinearProblem(a, L, bcs, petsc_options={"ksp_type": "preonly",
         "pc_type": "lu", "pc_factor_mat_solver_type": "mumps"})
