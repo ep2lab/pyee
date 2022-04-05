@@ -1,4 +1,4 @@
-import sys
+import sys, os
 import yaml
 import numpy as np
 import pickle
@@ -16,7 +16,7 @@ def prepareData(path, mode, user_data):
         elif entry in user_data:
             data[entry] = user_data[entry]
 
-    if mode == 'solve_pre':  # FEM pre can not be load by FD solver (the other way around works)
+    if mode == 'solve_pre':  # FEM pre can not be loaded by FD solver (the other way around works)
         print("Loading preprocessor file, configuration will be overwritten")
         general_temp = data['general'].copy()                                           # I don't want this overwritten
         file = open(data['general']['simdir'] + "/preproc.pkl","rb")
@@ -54,7 +54,7 @@ def prepareData(path, mode, user_data):
             filename = data['conditions']['current'][1]
             sys.path.append(filename + '/')
             import config_sim
-            data = config_sim.current(data)
+            data['current'] = config_sim.current(data)
             sys.path.remove(filename + '/')
             del sys.modules['config_sim']
         elif data['conditions']['current'][0] == 'function':
@@ -63,6 +63,12 @@ def prepareData(path, mode, user_data):
             raise Exception('Not implemented')
 
         data['BCs'] = boundaries(data)
+
+        if os.path.isfile(data['general']['simdir'] + '/config_sim.py'):    # This is an overrider that can modify any field in data
+            sys.path.append(data['general']['simdir'])
+            import config_sim
+            if "override" in dir(config_sim):
+                data = config_sim.override(data)
 
         file = open(data['general']['simdir'] + "/preproc.pkl","wb")
         pickle.dump(data,file)
@@ -162,7 +168,7 @@ def current(data):
     return ja
 
 def boundaries(data):
-
+    
     Lz = data['geometry']['Lz']
     Lx = data['geometry']['Lx']
     nz = data['geometry']['nz']

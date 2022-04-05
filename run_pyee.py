@@ -67,7 +67,7 @@ def sim(file='', mode = 'default', **user_data):
         import subprocess   # Do not import fem.py in pyee __init__
         command = 'mpirun -np ' + str(nthreads) + ' python3 ./pyee/fem.py ' + tempname + ' ' + str(data['simulation']['modes'][0])
         with subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True) as p, \
-            open(data['general']['simdir'] + 'FEM.log', 'ab') as file:
+            open(data['general']['simdir'] + '/FEM.log', 'ab') as file:
             for line in p.stdout: # b'\n'-separated lines
                 sys.stdout.buffer.write(line) # pass bytes as is
                 file.write(line)
