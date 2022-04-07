@@ -59,11 +59,11 @@ def pre(path):
     import tools
 
     antenna_data = dict()
-    antenna_data['za'] = 0.075 + 0.2
-    antenna_data['La'] = 0.075
-    antenna_data['ra'] = 0.0175
-    antenna_data['sa'] = 0.003
-    antenna_data['h']  = 0.5      
+    antenna_data['za'] = 0.0215 + data['geometry']['z_offset']
+    antenna_data['La'] = 0.045
+    antenna_data['ra'] = 0.0185
+    antenna_data['sa'] = 0.005
+    antenna_data['h']  = 0.5   
 
     ja  = tools.antenna.helix(data, antenna_data, data['simulation']['modes'][0])
     data['current'] = ja
